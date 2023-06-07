@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="taskList">
+  <div class="card" style="margin-top:5px">
+    <div class="card-header">
+      Task List
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Task Name</th>
+          <th>Done</th>
+          <th>Created</th>
+          <th>Task Priority</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+          <td th:text="${task.name}"></td>
+          <td th:text="${task.done ? 'Yes' : 'No'}"></td>
+          <td th:text="${#temporals.format(task.created, 'yyyy-MM-dd HH:MM')}"></td>
+          <td th:text="${task.priority}"></td>
+          <td style="display: flex; justify-content: flex-start;">
+            <form th:action="@{'/tasks/' + ${task.id}}" th:object="${TaskForm}" method="PUT">
+              <button type="submit" class="btn btn-sm btn-success">Update Task</button>
+            </form>
+            <form th:action="@{'/tasks/' + ${task.id}}" method="post" >
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit" class="btn btn-sm btn-danger">Delete Task</button>
+            </form>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

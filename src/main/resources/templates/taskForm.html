@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="taskForm">
+    <div class="card mt-4">
+        <span th:text="${task != null ? 'Update Task' : 'Create Task'}" class="card-header"></span>
+        <div class="card-body">
+            <form th:action="${task != null ? '/tasks/' + task.id : '/tasks/'}" th:object="${taskForm}" method="post">
+                <input th:if="${task != null }" type="hidden" name="_method" value="PUT">
+                <div class="form-group">
+                    <label for="name">Task Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required th:value="${task != null ? task.name : ''}" >
+                    <div th:if="${#fields.hasErrors('name')}" th:classappend="${#fields.hasErrors('name')} ? 'error'">
+                        <div th:errors="*{name}" class="error-message"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="done">Task Done</label>
+                    <select class="form-control" id="done" name="done" required>
+                        <option value="true" th:selected="${task != null && task.done}">Yes</option>
+                        <option value="false" th:selected="${task == null || !task.done}">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="priority">Task Priority</label>
+                    <select class="form-control" id="priority" name="priority" required>
+                        <option th:each="priority : ${T(de.fairsource.taskmanagement.domain.Priority).values()}"
+                                th:value="${priority}"
+                                th:text="${priority}"
+                                th:selected="${task != null && task.priority.toString() == priority.toString()}">
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" th:text="${task != null ? 'Save Task' : 'Create Task'}">...</button>
+                <a th:if="${task != null }" href="/tasks/" class="btn btn-primary">Back</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
