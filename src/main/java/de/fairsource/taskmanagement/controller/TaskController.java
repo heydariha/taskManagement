@@ -54,11 +54,11 @@ public class TaskController {
         if (bindingResult.hasErrors()) {
             return "home";
         }
-        Task task = new Task();
-        task.setId(UUID.randomUUID());
-        task.setName(taskForm.getName());
-        task.setDone(taskForm.isDone());
-        task.setPriority(taskForm.getPriority());
+        Task task = new Task.Builder()
+                .withId(UUID.randomUUID())
+                .withName(taskForm.getName())
+                .withDone(taskForm.isDone())
+                .withPriority(taskForm.getPriority()).build();
         taskService.createTask(task);
         return "redirect:/tasks/";
     }

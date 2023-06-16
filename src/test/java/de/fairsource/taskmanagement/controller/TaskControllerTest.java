@@ -124,14 +124,15 @@ public class TaskControllerTest {
     @NotNull
     private UUID mockTaskService() {
         UUID taskId = UUID.randomUUID();
-        Task task = new Task();
-        task.setId(taskId);
-        task.setDone(true);
-        task.setPriority(Priority.NORMAL);
+        Task task = new Task.Builder().
+                withId(taskId).
+                withDone(true).
+                withPriority(Priority.NORMAL)
+                .build();
         when(taskService.getTaskById(any())).thenReturn(Optional.of(task));
 
         List<Task> tasks = new ArrayList<>();
-        tasks.add(new Task());
+        tasks.add(new Task.Builder().build());
         tasks.add(task);
         when(taskService.getAllTasks()).thenReturn(tasks);
 

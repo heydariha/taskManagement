@@ -33,8 +33,7 @@ class TaskServiceImplTest {
     void testGetTaskById() {
         // GIVEN
         UUID taskId = UUID.randomUUID();
-        Task newTask = new Task();
-        newTask.setId(taskId);
+        Task newTask = new Task.Builder().withId(taskId).build();
         when(taskRepository.findById(taskId)).thenReturn(Optional.of(newTask));
 
         //WHEN
@@ -49,8 +48,8 @@ class TaskServiceImplTest {
     void testGetAllTasks() {
         // GIVEN
         List<Task> tasks = new ArrayList<>();
-        tasks.add(new Task());
-        tasks.add(new Task());
+        tasks.add(new Task.Builder().withId(UUID.randomUUID()).build());
+        tasks.add(new Task.Builder().withId(UUID.randomUUID()).build());
         when(taskRepository.findAll()).thenReturn(tasks);
 
         //WHEN
@@ -64,12 +63,13 @@ class TaskServiceImplTest {
     @Test
     void testCreateNewTask() {
         // GIVEN
-        Task task = new Task();
-        task.setId(UUID.randomUUID());
-        task.setName("Hadi");
-        task.setDone(true);
-        task.setCreated(Instant.now());
-        task.setPriority(Priority.NORMAL);
+        Task task = new Task.Builder()
+                .withId(UUID.randomUUID())
+                .withName("Hadi")
+                .withDone(true)
+                .withCreated(Instant.now())
+                .withPriority(Priority.NORMAL)
+                .build();
         when(taskRepository.save(task)).thenReturn(task);
 
         //WHEN
@@ -83,8 +83,9 @@ class TaskServiceImplTest {
     @Test
     void testUpdateExistingTask() {
         // GIVEN
-        Task task = new Task();
-        task.setId(UUID.randomUUID());
+        Task task = new Task.Builder()
+                .withId(UUID.randomUUID())
+                .build();
         when(taskRepository.save(task)).thenReturn(task);
 
         //WHEN

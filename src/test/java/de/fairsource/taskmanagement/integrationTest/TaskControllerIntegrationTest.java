@@ -41,16 +41,18 @@ public class TaskControllerIntegrationTest {
 
     @BeforeAll
     public void setUp() {
-        Task tempTask1 = new Task();
-        tempTask1.setName("Task 1");
-        tempTask1.setDone(false);
-        tempTask1.setPriority(Priority.URGENT);
+        Task tempTask1 = new Task.Builder()
+                .withName("Task 1")
+                .withDone(false)
+                .withPriority(Priority.URGENT)
+                .build();
         task1 = taskRepository.save(tempTask1);
 
-        Task tempTask2 = new Task();
-        tempTask2.setName("Task 2");
-        tempTask2.setDone(true);
-        tempTask2.setPriority(Priority.NORMAL);
+        Task tempTask2 = new Task.Builder()
+                .withName("Task 2")
+                .withDone(true)
+                .withPriority(Priority.NORMAL)
+                .build();
         task2 = taskRepository.save(tempTask2);
     }
 
