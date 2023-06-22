@@ -8,7 +8,7 @@
 		<version>3.0.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>de.fairsource</groupId>
+	<groupId>de.hadi</groupId>
 	<artifactId>task-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>task-management</name>
@@ -52,11 +52,6 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.jetbrains</groupId>
 			<artifactId>annotations</artifactId>
 			<version>RELEASE</version>
@@ -67,7 +62,17 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<version>6.1.1</version>
+			<scope>test</scope>
+		</dependency>
     </dependencies>
 
 	<build>

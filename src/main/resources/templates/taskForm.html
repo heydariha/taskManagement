@@ -5,7 +5,7 @@
     <div class="card mt-4">
         <span th:text="${task != null ? 'Update Task' : 'Create Task'}" class="card-header"></span>
         <div class="card-body">
-            <form th:action="${task != null ? '/tasks/' + task.id : '/tasks/'}" th:object="${taskForm}" method="post">
+            <form th:action="${task != null ? '/tasks/' + task.id : '/tasks'}" th:object="${taskForm}" method="post">
                 <input th:if="${task != null }" type="hidden" name="_method" value="PUT">
                 <div class="form-group">
                     <label for="name">Task Name</label>
@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label for="priority">Task Priority</label>
                     <select class="form-control" id="priority" name="priority" required>
-                        <option th:each="priority : ${T(de.fairsource.taskmanagement.domain.Priority).values()}"
+                        <option th:each="priority : ${T(de.hadi.taskmanagement.domain.Priority).values()}"
                                 th:value="${priority}"
                                 th:text="${priority}"
                                 th:selected="${task != null && task.priority.toString() == priority.toString()}">
@@ -32,7 +32,7 @@
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary" th:text="${task != null ? 'Save Task' : 'Create Task'}">...</button>
-                <a th:if="${task != null }" href="/tasks/" class="btn btn-primary">Back</a>
+                <a th:if="${task != null }" href="/tasks" class="btn btn-primary">Back</a>
             </form>
         </div>
     </div>

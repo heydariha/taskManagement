@@ -12,7 +12,8 @@
             <form th:action="@{/login}" method="post">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Enter your username" name="username">
+                    <input type="text" class="form-control" id="username" placeholder="Enter your username" name="username" autofocus="autofocus"
+                           th:value="${#fields.hasErrors('username') ? param.username : ''}">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>

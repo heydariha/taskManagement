@@ -1,40 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Management</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-
 <body>
-<div class="container mt-5">
-  <h3 th:text="${title}"></h3>
 
-  <!-- Include task form fragment -->
-  <div th:replace="taskForm :: taskForm"></div>
+<!-- Include navigation bar fragment -->
+<div th:replace="navigationBar :: navigationBar"></div>
 
-  <!-- Include tasks list fragment -->
-  <div th:if="${tasks != null && tasks.size() > 0 }" >
-    <div th:replace="taskList :: taskList"></div>
+<div class="container mt-4">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to the Task Manager!</h1>
+    <p class="lead">Manage your tasks efficiently and stay organized.</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a>
   </div>
-
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-<style>
-  .error {
-    padding: 5px;
-}
-
-.error-message {
-    color: red;
-    font-style: italic;
-    font-size:12px;
-}
-</style>
 </html>
