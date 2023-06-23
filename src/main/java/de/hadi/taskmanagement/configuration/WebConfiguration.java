@@ -1,4 +1,4 @@
-package de.hadi.taskmanagement.confoguration;
+package de.hadi.taskmanagement.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
