@@ -42,3 +42,12 @@ If you need to run this test with postgres in docker, you need to set `spring.da
 
 
 Please note that whenever you make changes to the application, you need to rebuild the Docker image before running the Docker commands again to ensure that the latest changes are applied. 
+
+
+## Credential
+
+To log into th system please use the following credentials:
+
+username: ``user``
+
+password: ``password``
