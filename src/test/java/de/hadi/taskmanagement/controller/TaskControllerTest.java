@@ -3,7 +3,7 @@ package de.hadi.taskmanagement.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.hadi.taskmanagement.domain.Priority;
 import de.hadi.taskmanagement.domain.Task;
-import de.hadi.taskmanagement.forms.TaskForm;
+import de.hadi.taskmanagement.dto.TaskForm;
 import de.hadi.taskmanagement.services.TaskService;
 import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;

@@ -2,7 +2,7 @@ package de.hadi.taskmanagement.controller;
 
 import de.hadi.taskmanagement.domain.Task;
 import de.hadi.taskmanagement.exception.TaskNotFoundException;
-import de.hadi.taskmanagement.forms.TaskForm;
+import de.hadi.taskmanagement.dto.TaskForm;
 import de.hadi.taskmanagement.services.TaskService;
 import jakarta.validation.Valid;
 import org.jetbrains.annotations.NotNull;

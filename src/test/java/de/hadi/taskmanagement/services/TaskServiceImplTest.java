@@ -2,6 +2,7 @@ package de.hadi.taskmanagement.services;
 
 import de.hadi.taskmanagement.domain.Priority;
 import de.hadi.taskmanagement.domain.Task;
+import de.hadi.taskmanagement.exception.TaskNotFoundExceptionRest;
 import de.hadi.taskmanagement.repository.TaskRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -96,15 +97,34 @@ class TaskServiceImplTest {
     }
 
     @Test
-    void testDeleteTask() {
+    void testDeleteValidTaskShouldReturnTrue() {
+        // GIVEN
+        UUID taskId = UUID.randomUUID();
+        Task task = new Task.Builder()
+                .withId(UUID.randomUUID())
+                .build();
+        when(taskRepository.findById(taskId)).thenReturn(Optional.of(task));
+
+        //WHEN
+        boolean result = taskService.deleteTask(taskId);
+
+        // Assert the exception message
+        assertTrue(result);
+    }
+
+    @Test
+    void testDeleteInvalidTaskShouldTrowException() {
         // GIVEN
         UUID taskId = UUID.randomUUID();
 
         //WHEN
-        taskService.deleteTask(taskId);
+        // Verify the exception
+        TaskNotFoundExceptionRest exception = assertThrows(TaskNotFoundExceptionRest.class, () -> {
+            taskService.deleteTask(taskId);
+        });
 
-        //THEN
-        verify(taskRepository, times(1)).deleteById(taskId);
+        // Assert the exception message
+        assertTrue(exception.getMessage().contains("Task with ID "+ taskId +" not found."));
     }
 
 }
