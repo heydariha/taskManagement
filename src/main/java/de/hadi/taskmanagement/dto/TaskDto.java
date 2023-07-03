@@ -1,14 +1,20 @@
-package de.hadi.taskmanagement.forms;
+package de.hadi.taskmanagement.dto;
 
 import de.hadi.taskmanagement.domain.Priority;
-import jakarta.persistence.*;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-public class TaskForm {
+import java.util.UUID;
 
+public class TaskDto {
+
+        private UUID uuid;
         @NotBlank(message = "Name is required")
         private String name;
 
+        @NotNull
         private boolean done;
 
         @Enumerated(EnumType.STRING)
@@ -24,6 +30,13 @@ public class TaskForm {
 
         public Priority getPriority() {
                 return priority;
+        }
+
+        public UUID getUuid() {
+                return this.uuid;
+        }
+        public void setUuid(UUID uuid) {
+                this.uuid = uuid;
         }
 
         public void setName(String name) {

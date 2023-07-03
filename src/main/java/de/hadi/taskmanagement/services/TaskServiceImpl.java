@@ -1,6 +1,7 @@
 package de.hadi.taskmanagement.services;
 
 import de.hadi.taskmanagement.domain.Task;
+import de.hadi.taskmanagement.exception.TaskNotFoundExceptionRest;
 import de.hadi.taskmanagement.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,14 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.save(task);
     }
 
-    public void deleteTask(UUID taskId) {
-        taskRepository.deleteById(taskId);
+    public boolean deleteTask(UUID taskId) {
+        Optional<Task> task = taskRepository.findById(taskId);
+        if (task.isPresent()) {
+            taskRepository.deleteById(taskId);
+            return true;
+        } else {
+            throw new TaskNotFoundExceptionRest("Task with ID " + taskId + " not found.");
+        }
     }
+
 }

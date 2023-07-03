@@ -18,17 +18,20 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-            .authorizeRequests()
-            .requestMatchers("/", "/home").permitAll()
-            .anyRequest().authenticated()
+                .csrf().ignoringRequestMatchers("/api/**")
+                .and()
+                .authorizeRequests()
+                .requestMatchers("/api/**").permitAll()
+                .requestMatchers("/", "/home").permitAll()
+                .anyRequest().authenticated()
             .and()
-            .formLogin()
-            .loginPage("/login")
-            .defaultSuccessUrl("/tasks")
-            .permitAll()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/tasks")
+                .permitAll()
             .and()
-            .logout()
-            .permitAll();
+                .logout()
+                .permitAll();
 
         return http.build();
     }
